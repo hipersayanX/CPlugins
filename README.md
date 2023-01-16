@@ -8,7 +8,7 @@ The interfaces are the common language used by both, the plugins and the clients
 
 **iunknown.h**
 
-```
+```cpp
 #define IID_IUnknown 0x1L
 
 struct IUnknown
@@ -24,7 +24,7 @@ ISayHello is an example interface that inherits IUnknown and then implements it'
 
 **isayhello.h**
 
-```
+```cpp
 #define IID_ISayHello 0x2L
 
 struct ISayHello
@@ -40,7 +40,7 @@ Each plugin must define an entry and a cleanup function that must be publically 
 
 **plugin.cpp**
 
-```
+```cpp
 int helloInit(int argc, char *argv[])
 {
     return 0;
@@ -58,7 +58,7 @@ In the example, we create an Object which internally implements an IUnknown inte
 
 **plugin.cpp**
 
-```
+```cpp
 static Object *obj = nullptr;
 
 int helloInit(int argc, char **argv)
@@ -79,7 +79,7 @@ In the example, the IUnknown is queried for an ISayHello interface and then the 
 
 **pluginapi.h**
 
-```
+```cpp
 inline void callHello(IUnknown *obj)
 {
     ISayHello *salute = nullptr;
@@ -96,7 +96,7 @@ Now using the plugin is as simple as calling the entry functions.
 
 **pload.cpp**
 
-```
+```cpp
 #include <memory>
 #include <dlfcn.h>
 
